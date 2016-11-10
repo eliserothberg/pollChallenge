@@ -63,12 +63,12 @@ console.log("uniqueStates = " + uniqueStates);
 
       if(pollData[i].state == theState) {
         counter++;
-        clintonAdded += Math.round(pollData[i].Clinton;
+        clintonAdded += (pollData[i].Clinton);
         trumpAdded += pollData[i].Trump;
         forAvg = Math.abs(pollData[i].Clinton - pollData[i].Trump);
-        // forAvg = Math.round(forAvg * 100) / 100
-        avgAdded +=Math.round(forAvg * 100) / 100;
-        // avgAdded = avgAdded.toFixed(1);
+        forAvg = Math.round(forAvg * 100) / 100;
+        avgAdded +=forAvg;
+        avgAdded = Math.round(avgAdded * 10) / 10;
 
         console.log("data Clinton if " + theState + ": " + pollData[i].Clinton);
         console.log("data Trump if " + theState + ": " + pollData[i].Trump);
