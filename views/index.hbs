@@ -43,61 +43,78 @@ var uniqueStates = newStates.filter(function(elem, pos) {
 
 console.log("uniqueStates = " + uniqueStates);
 
-console.log("the state is " + theState);
 // nested for loops to run through state array and data array and pull info
 //lots of console logs to show the process as it is not rendered on screen
  for (j=0; j< uniqueStates.length; j++) {
-  theState = uniqueStates[j]
-  counter = 0;
-  forAvg = 0;
-  theAvg= 0;
-  avgAdded = 0;
-  red=0;
-  blue=0;
-  clintonAdded=0;
-  trumpAdded=0;
+
+  var theState = uniqueStates[j]
+  var counter = 0;
+  var forAvg = 0;
+  var theAvg= 0;
+  var avgAdded = 0;
+  var red=0;
+  var blue=0;
+  var clintonAdded=0;
+  var trumpAdded=0;
+  var shade;
+
   function checkStates() {
     for(i=0; i < pollData.length; i++) {
 
       if(pollData[i].state == theState) {
-        console.log("this state is " + pollData[i].state);
         counter++;
-        clintonAdded += pollData[i].Clinton;
+        clintonAdded += Math.round(pollData[i].Clinton;
         trumpAdded += pollData[i].Trump;
-        forAvg = Math.abs(pollData[i].Clinton - pollData[i].Trump)
-        avgAdded +=forAvg;
-        console.log("avg = " + forAvg);
-        console.log("data Clinton if " + theState + "- " + pollData[i].Clinton);
-        console.log("data Trump if " + theState + "- " + pollData[i].Trump);
+        forAvg = Math.abs(pollData[i].Clinton - pollData[i].Trump);
+        // forAvg = Math.round(forAvg * 100) / 100
+        avgAdded +=Math.round(forAvg * 100) / 100;
+        // avgAdded = avgAdded.toFixed(1);
+
+        console.log("data Clinton if " + theState + ": " + pollData[i].Clinton);
+        console.log("data Trump if " + theState + ": " + pollData[i].Trump);
+        console.log("average = " + forAvg);
+
       }
     };
-    console.log("total Clinton if " + theState + "- " + clintonAdded);
-    console.log("total Trump if " + theState + "- " + trumpAdded);
-    console.log("total avg if " + theState + "- " + avgAdded);
+    console.log("total Clinton if " + theState + ": " + clintonAdded);
+    console.log("total Trump if " + theState + ": " + trumpAdded);
+    console.log("total to average if " + theState + ": " + avgAdded);
     console.log("counter: " + counter);
 
     if (clintonAdded > trumpAdded) {
       blue++;
-      //things that don't work to change color
-      // var color = blue;
-      var colorBlue = d3.select("#statesvg") 
-      .append("path.state")  
-      .attr("fill", "blue");  
     } 
     else if (trumpAdded > clintonAdded) {
       red++;
-      //things that don't work to change color
+    }
+
+    if (theAvg <= 2) {
+      shade = "light";
+    }
+    else if (theAvg > 2 && theAvg <= 5) {
+      shade = "mild";
+    }
+    else {
+      shade = "deep";
+    }
+
+     //things that don't work to change color
       // theState(path.state), color = red;
       var colorRed = d3.select("#statesvg") 
       .append("path.state")  
       .attr("fill", "red");  
       // var color = red;
-    }
+      // var color = blue;
+      var colorBlue = d3.select("#statesvg") 
+      .append("path.state")  
+      .attr("fill", "blue");  
 
     theAvg = (avgAdded / counter);
     console.log("theAvg: " + theAvg);
     console.log("red: " + red);
     console.log("blue: " + blue);
+    console.log("shade = " + shade);
+
   }
   checkStates();
 }
