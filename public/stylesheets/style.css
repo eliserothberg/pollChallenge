@@ -1,11 +1,4 @@
-body {
-    background-color: #8396b4;
-  }
-
-/*a {
-  color: #00B7FF;
-}*/
-  .state{
+ .state{
     fill: none;
     stroke: #a9a9a9;
     stroke-width: 1;
