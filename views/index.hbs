@@ -78,9 +78,20 @@ console.log("the state is " + theState);
 
     if (clintonAdded > trumpAdded) {
       blue++;
+      //things that don't work to change color
+      // var color = blue;
+      var colorBlue = d3.select("#statesvg") 
+      .append("path.state")  
+      .attr("fill", "blue");  
     } 
     else if (trumpAdded > clintonAdded) {
       red++;
+      //things that don't work to change color
+      // theState(path.state), color = red;
+      var colorRed = d3.select("#statesvg") 
+      .append("path.state")  
+      .attr("fill", "red");  
+      // var color = red;
     }
 
     theAvg = (avgAdded / counter);
