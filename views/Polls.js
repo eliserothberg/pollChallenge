@@ -12,6 +12,7 @@ var pollData = [
   state: "Utah", 
   Clinton: 27.03206, 
   Trump: 38.9474},
+  
   {branch: "President",
   forecastdate: 10/28/16,
   state: "Florida",

@@ -14,6 +14,15 @@
 
 </head>
 <body>
+<nav class="navbar navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+              <h3>Oct 28-Nov 2 Polling Results of Battleground States: Latest US Presidential Election</h3> 
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
 <script>
 
@@ -21,7 +30,7 @@
 
 function tooltipHtml(n, d){ /* function to create html content string in tooltip div. */
   return "<h4>"+n+"</h4><table>"+
-    "<tr><td></td><td>"+(d.low)+"</td></tr>"+
+    "<tr><td></td><td>"+(d.upBy)+"</td></tr>"+
     // "<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
     // "<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
     "</table>";
@@ -50,12 +59,12 @@ console.log("uniqueStates = " + uniqueStates);
   var theState = uniqueStates[j];
   var counter = 0;
   var forAvg = 0;
-  var theAvg= 0;
+  var theAvg = 0;
   var avgAdded = 0;
-  var red=0;
-  var blue=0;
-  var clintonAdded=0;
-  var trumpAdded=0;
+  var red = 0;
+  var blue = 0;
+  var clintonAdded = 0;
+  var trumpAdded = 0;
   var shade;
 
   function checkStates() {
@@ -75,7 +84,7 @@ console.log("uniqueStates = " + uniqueStates);
         console.log("average = " + forAvg);
       }
     };
-    
+
     console.log("total Clinton if " + theState + ": " + clintonAdded);
     console.log("total Trump if " + theState + ": " + trumpAdded);
     console.log("total to average if " + theState + ": " + avgAdded);
@@ -100,6 +109,7 @@ console.log("uniqueStates = " + uniqueStates);
       shade = "deep";
     }
 
+
      //things that don't work to change color
       // theState(path.state), color = red;
       var colorRed = d3.select("#statesvg") 
@@ -108,7 +118,7 @@ console.log("uniqueStates = " + uniqueStates);
       // var color = red;
       // var color = blue;
       var colorBlue = d3.select("#statesvg") 
-      .append("path.state")  
+      .append("path.state", 'd')  
       .attr("fill", "blue");  
 
     console.log("theAvg: " + theAvg);
@@ -129,20 +139,30 @@ console.log("uniqueStates = " + uniqueStates);
   "CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN", 
   "WI", "MO", "AR", "OK", "KS", "LS", "VA"]
 
+  //absolutely not /*&R#@ working
+  // need to figure out how to hook into individual states
+  //maybe push state names into array depending on color and hue, then matching
+  //with IDs/stateData to determine colors?
 
     .forEach(function(d){ 
-      var low=Math.round(100*Math.random()), 
-        mid=Math.round(100*Math.random()), 
-        high=Math.round(100*Math.random());
-      stateData[d]={low:d3.min([low,mid,high]), high:d3.max([low,mid,high]), 
-          avg:Math.round((low+mid+high)/3), color:d3.interpolate("#ffffcc", "#e8c4d2")(low/100)}; 
-        
+      var upBy=Math.round(100*Math.random()), 
+        mid=Math.round(theAvg*Math.random()), 
+        high=Math.round(theAvg*Math.random());
+      stateData[d]={upBy:d3.min([upBy,mid,high]), high:d3.max([upBy,mid,high]), 
+          avg:Math.round((upBy+mid+high)/3), color:d3.interpolate("#3399ff", "#ff1a1a")(upBy/100)}; 
+        console.log("the Average in colors: " + theAvg)
     });
 
   /* draw states on id #statesvg */ 
   uStates.draw("#statesvg", stateData, tooltipHtml);
   
-  d3.select(self.frameElement).style("height", "600px"); 
+//   d3.select(self.frameElement).style("height", "600px"); 
+//   if (red > 0) {
+// d3.select(id).selectAll(".state")
+//       .data(uStatePaths).enter().append("path").attr("class","state").attr("d",function(d){ return d.d;})
+//       .style("fill",function(d){ return data[d.id].color; red})
+//       .on("mouseover", mouseOver).on("mouseout", mouseOut);
+//     }
 
 </script>
 
