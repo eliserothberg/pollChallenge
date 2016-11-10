@@ -47,7 +47,7 @@ console.log("uniqueStates = " + uniqueStates);
 //lots of console logs to show the process as it is not rendered on screen
  for (j=0; j< uniqueStates.length; j++) {
 
-  var theState = uniqueStates[j]
+  var theState = uniqueStates[j];
   var counter = 0;
   var forAvg = 0;
   var theAvg= 0;
@@ -73,13 +73,15 @@ console.log("uniqueStates = " + uniqueStates);
         console.log("data Clinton if " + theState + ": " + pollData[i].Clinton);
         console.log("data Trump if " + theState + ": " + pollData[i].Trump);
         console.log("average = " + forAvg);
-
       }
     };
+    
     console.log("total Clinton if " + theState + ": " + clintonAdded);
     console.log("total Trump if " + theState + ": " + trumpAdded);
     console.log("total to average if " + theState + ": " + avgAdded);
     console.log("counter: " + counter);
+    theAvg = (avgAdded / counter);
+    theAvg = Math.round(theAvg * 10) / 10;
 
     if (clintonAdded > trumpAdded) {
       blue++;
@@ -109,7 +111,6 @@ console.log("uniqueStates = " + uniqueStates);
       .append("path.state")  
       .attr("fill", "blue");  
 
-    theAvg = (avgAdded / counter);
     console.log("theAvg: " + theAvg);
     console.log("red: " + red);
     console.log("blue: " + blue);
